@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/Forms';
 import { SharedModule } from '../shared/shared.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -11,6 +10,7 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 import { ChartsModule } from 'ng2-charts';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccountSettingsComponent } from './account-settings.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -25,8 +25,8 @@ import { AccountSettingsComponent } from './account-settings.component';
     imports: [
         SharedModule,
         PagesRoutingModule,
-        FormsModule,
-        ChartsModule
+        ChartsModule,
+        FormsModule
     ],
     exports: [
     DashboardComponent,

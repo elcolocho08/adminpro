@@ -1,3 +1,11 @@
 #themecolors a {
     cursor: pointer;
 }
+
+.card {
+    margin-bottom: 30px;
+}
+
+.pointer {
+    cursor: pointer;
+}

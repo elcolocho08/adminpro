@@ -10,9 +10,9 @@ export class SidevarService {
       titulo: 'Principal',
       icono: 'mdi mdi-gauge',
       submenu: [
-        { titulo: 'dashboard', url: '/dashboard' },
-        { titulo: 'progressBar', url: '/progress' },
-        { titulo: 'graficas', url: '/graficas1' }
+        { titulo: 'Dashboard', url: '/dashboard' },
+        { titulo: 'Progress Bar', url: '/progress' },
+        { titulo: 'Graficas', url: '/graficas1' }
       ]
     }
   ];

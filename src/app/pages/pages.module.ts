@@ -11,6 +11,9 @@ import { ChartsModule } from 'ng2-charts';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccountSettingsComponent } from './account-settings.component';
 import { FormsModule } from '@angular/forms';
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -20,13 +23,16 @@ import { FormsModule } from '@angular/forms';
     PagesComponent,
     IncrementadorComponent,
     GraficoDonaComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    ProfileComponent
     ],
     imports: [
+        CommonModule,
         SharedModule,
         PagesRoutingModule,
         ChartsModule,
-        FormsModule
+        FormsModule,
+        PipesModule
     ],
     exports: [
     DashboardComponent,

@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { SubirArchivoService } from '../subirarchivo/subir-archivo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ export class UsuarioService {
   }
 
   constructor( private http: HttpClient,
-               public router: Router ) {
+               public router: Router,
+               public sAS: SubirArchivoService ) {
     this.cargarStorage();
   }
 
@@ -112,6 +114,54 @@ export class UsuarioService {
 
                }));
 
+  }
+
+  actualizarService( usuario: Usuario ) {
+
+  let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+  url += '?token=' + this.token;
+
+  return this.http.put( url, usuario )
+                  .pipe( map( (resp: any ) => {
+
+                    this.guardarStorage( resp.usuario._id, this.token, usuario );
+                    Swal.fire({
+                      title: 'Usuario Actualzado',
+                      text: 'El usuario ha sido actualizado correctamente',
+                      icon: 'success',
+                      timer: 1300,
+                      showConfirmButton: false,
+                      allowOutsideClick: false
+                    });
+                    Swal.showLoading();
+
+                    return true;
+
+                  }));
+
+  }
+
+  cambiarImagen( archivo: File, id: string ) {
+
+     this.sAS.subirArchivo( archivo, 'usuarios', id )
+             .then( (resp: any ) => {
+              this.usuario.img = resp.usuario.img;
+
+              Swal.fire({
+                title: 'Imagen Actualzado',
+                      text: 'La imagen ha sido actualizado correctamente',
+                      icon: 'success',
+                      timer: 1300,
+                      showConfirmButton: false,
+                      allowOutsideClick: false
+              });
+              Swal.showLoading();
+
+              this.guardarStorage(id, this.token, this.usuario);
+             })
+             .catch( resp => {
+              console.log(resp);
+             });
   }
 
 }

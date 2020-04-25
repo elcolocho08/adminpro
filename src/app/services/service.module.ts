@@ -9,6 +9,7 @@ import {
   SubirArchivoService
 } from './service.index';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalService } from '../components/modal/modal.service';
 
 @NgModule({
   declarations: [],
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     SidevarService,
     UsuarioService,
     SubirArchivoService,
-    LoginGGuard
+    LoginGGuard,
+    ModalService
   ]
 })
 export class ServiceModule { }

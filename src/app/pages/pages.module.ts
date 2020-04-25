@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import { CommonModule } from '@angular/common';
     IncrementadorComponent,
     GraficoDonaComponent,
     AccountSettingsComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsuariosComponent,
+    ModalComponent
     ],
     imports: [
         CommonModule,

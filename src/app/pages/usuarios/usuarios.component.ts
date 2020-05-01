@@ -3,6 +3,7 @@ import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/service.index';
 import Swal from 'sweetalert2';
 import { ModalService } from '../../components/modal/modal.service';
+import { SidevarService } from '../../services/shared/sidevar.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -18,7 +19,8 @@ export class UsuariosComponent implements OnInit {
   cargando: boolean = true;
 
   constructor( public uS: UsuarioService,
-               public mS: ModalService ) { }
+               public mS: ModalService,
+               public sidebarS: SidevarService) { }
 
   ngOnInit(): void {
     this.cargrUsuarios();
@@ -27,7 +29,7 @@ export class UsuariosComponent implements OnInit {
 
   mostrarModal( id: string ) {
 
-    this.mS.mostrarModal( 'usuarios', id );
+      this.mS.mostrarModal( 'usuarios', id );
 
   }
 
@@ -115,7 +117,17 @@ export class UsuariosComponent implements OnInit {
   guardarUsuario( usuario: Usuario ) {
 
     this.uS.actualizarService( usuario )
-        .subscribe();
+        .subscribe( resp => {
+
+          if ( usuario.role === 'USER_ROLE' && usuario._id === this.uS.usuario._id) {
+            this.uS.logout();
+            Swal.fire({
+              title: 'Administrador',
+              text: 'Ha perdido todos los privilegios de administrador'
+            });
+          }
+
+        });
 
   }
 

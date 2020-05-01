@@ -20,7 +20,6 @@ export class ModalService {
     this.oculto = 'cerrar';
     this.id = null;
     this.tipo = null;
-
   }
 
   mostrarModal( tipo: string, id: string ) {
@@ -28,7 +27,6 @@ export class ModalService {
     this.oculto = '';
     this.id = id;
     this.tipo = tipo;
-
   }
 
 }

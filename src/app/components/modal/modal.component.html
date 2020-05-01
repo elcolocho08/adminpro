@@ -17,7 +17,7 @@
                     <br>
                     <hr style="width: 100%;">
 
-                    <input (change)="seleccionImagen( $event.target.files[0] )" type="file">
+                    <input [(ngModel)]="file" (change)="seleccionImagen( $event.target.files[0] )" type="file">
 
                 </div>
                 <div class="modal-footer">

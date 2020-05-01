@@ -29,7 +29,13 @@ export class ProfileComponent implements OnInit {
     }
 
     this.uS.actualizarService( this.usuario )
-           .subscribe();
+           .subscribe( resp => err => {
+            Swal.fire({
+              title: 'Error',
+              text: err.error.mensaje,
+              icon: 'error'
+             });
+         });
 
   }
 

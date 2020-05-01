@@ -9,5 +9,6 @@ import { SettingsService } from './services/settings/settings.service';
 export class AppComponent {
   title = 'adminpro';
 
-  constructor( public settingS: SettingsService ) {}
+  constructor( public settingS: SettingsService ) {
+  }
 }

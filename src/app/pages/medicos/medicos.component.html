@@ -1,0 +1,72 @@
+<div class="row animated fadeIn slow">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input (keyup)="buscarHospitales( input.value )" #input type="text" class="form-control" placeholder="Search">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn slow" *ngIf="!medicos">
+
+    <div class="col-sm-12">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-3x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="row animated fadeIn slow" *ngIf="medicos">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="card-title">Medicos registrados ( <small>{{ medicoS.contador }}</small> )</h3>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button [routerLink]="['/medico','nuevo']" class="btn btn-primary text-right">
+                            <i class="fa fa-plus"></i>
+                            Create Medico
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Medicos</th>
+                            <th>Hospital</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let medico of medicos">
+                            <th><img (click)="mostrarModal(medico._id)" style="width: 70px;" class=" img-thumbnail pointer" [src]="medico.img | imagen:'medicos'"></th>
+                            <th>{{medico.nombre}}</th>
+                            <th>{{ medico.hospital.nombre }}</th>
+                            <th>
+                                <button [routerLink]="['/medico', medico._id]" class="btn btn-primary">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <button (click)="borrarMedico(medico._id)" class="btn btn-danger">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </th>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

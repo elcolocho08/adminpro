@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
+import Swal from 'sweetalert2';
 
 declare function init_plugin();
 declare const gapi: any;
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
 
      // const profile = googleUser.getBasicProfile();
 
-     let token = googleUser.getAuthResponse().id_token;
+     const token = googleUser.getAuthResponse().id_token;
 
      this.loginS.loginGoogle( token )
                 .subscribe( resp => {
@@ -74,8 +75,14 @@ export class LoginComponent implements OnInit {
     );
 
     this.loginS.login( usuario, forma.value.recuerdame )
-               .subscribe( resp => this.router.navigate(['/dashboard']) );
-
+               .subscribe( resp => this.router.navigate(['/dashboard']),
+               err => {
+                 Swal.fire({
+                   title: 'Error',
+                   text: err.error.mensaje,
+                   icon: 'error'
+                  });
+              });
   }
 
 }

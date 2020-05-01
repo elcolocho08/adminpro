@@ -1,0 +1,54 @@
+<div class="row animated fadeIn slow">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Doctor Profile</h4>
+                <h6 class="card-subtitle">Doctor Details</h6>
+                <form (ngSubmit)="guardarMedico(f)" ngNativeValidate #f="ngForm" class="form p-t-20">
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-user"></i></span>
+                            </div>
+                            <input [(ngModel)]="medico.nombre" type="text" required class="form-control" placeholder="Username" aria-label="Usarname" name="nombre">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Hospital</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-email"></i></span>
+                            </div>
+                            <select (change)="cambioHospital( $event.target.value )" [(ngModel)]="medico.hospital" name="hospital" class="form-control" required>
+                                <option value="">Seleccione Hospital</option>
+                                <option *ngFor="let hospital of hospitales" [value]="hospital._id">{{ hospital.nombre }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button [routerLink]="['/medicos']" type="button" class="btn btn-danger waves-effect waves-light m-r-10">
+                        <i class="fa fa-backward"></i>
+                        Return
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body" align="center">
+                <h4 class="card-title">Hospital Picture</h4>
+                <h6 class="card-subtitle">{{ hospital.nombre }}</h6>
+
+                <img [src]="hospital.img | imagen:'hospitales'" width="300">
+
+            </div>
+        </div>
+    </div>
+
+</div>

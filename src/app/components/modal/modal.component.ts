@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { SubirArchivoService } from '../../services/subirarchivo/subir-archivo.service';
 import { ModalService } from './modal.service';
+import { Usuario } from '../../models/usuario.model';
+import { UsuarioService } from '../../services/usuario/usuario.service';
+
 
 @Component({
   selector: 'app-modal',
@@ -12,9 +15,13 @@ export class ModalComponent implements OnInit {
 
   imagenSubir: File;
   imagenTemp: any;
+  cambio: string;
+  usuario: Usuario;
+  file: string;
 
   constructor( public sB: SubirArchivoService,
-               public mS: ModalService ) { }
+               public mS: ModalService,
+               public uS: UsuarioService ) { }
 
   ngOnInit(): void {
   }
@@ -22,14 +29,17 @@ export class ModalComponent implements OnInit {
   subirImagen() {
 
     this.sB.subirArchivo( this.imagenSubir, this.mS.tipo, this.mS.id )
-           .then( resp => {
-
+           .then( (resp: any) => {
             this.mS.notificacion.emit(resp);
+            if ( this.mS.id === this.uS.usuario._id ) {
+              this.uS.usuario.img = resp.usuario.img;
+              localStorage.setItem('usuario', JSON.stringify(this.uS.usuario));
+            }
             this.cerrarModal();
 
            })
             .catch( err => {
-
+              console.log( err );
             });
 
   }
@@ -38,9 +48,9 @@ export class ModalComponent implements OnInit {
 
     this.imagenSubir = null;
     this.imagenTemp = null;
+    this.file = '';
 
     this.mS.ocultarModal();
-
   }
 
   seleccionImagen( archivo: File ) {

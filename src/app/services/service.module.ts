@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  SettingsService,
-  SharedService,
-  SidevarService,
-  UsuarioService,
-  LoginGGuard,
-  SubirArchivoService
-} from './service.index';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalService } from '../components/modal/modal.service';
+import { MedicoService } from './medicos/medico.service';
+import { SettingsService } from './settings/settings.service';
+import { SharedService } from './shared/shared.service';
+import { SidevarService } from './shared/sidevar.service';
+import { UsuarioService } from './usuario/usuario.service';
+import { SubirArchivoService } from './subirarchivo/subir-archivo.service';
+import { LoginGGuard } from './guards/login-g.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { HospitalesService } from './hospitales/hospitales.service';
+import { VerificaTokenGuard } from './guards/verifica-token.guard';
 
 @NgModule({
   declarations: [],
@@ -24,7 +26,11 @@ import { ModalService } from '../components/modal/modal.service';
     UsuarioService,
     SubirArchivoService,
     LoginGGuard,
-    ModalService
+    AdminGuard,
+    VerificaTokenGuard,
+    ModalService,
+    HospitalesService,
+    MedicoService
   ]
 })
 export class ServiceModule { }

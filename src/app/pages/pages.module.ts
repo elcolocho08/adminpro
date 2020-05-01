@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
-import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages.routes';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { ChartsModule } from 'ng2-charts';
@@ -15,34 +13,41 @@ import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { ModalComponent } from '../components/modal/modal.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { PagesComponent } from './pages.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
+    PagesComponent,
     DashboardComponent,
     ProgressComponent,
     Grafica1Component,
-    PagesComponent,
     IncrementadorComponent,
     GraficoDonaComponent,
     AccountSettingsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalComponent
+    HospitalesComponent,
+    MedicosComponent,
+    MedicoComponent,
+    BusquedaComponent
     ],
     imports: [
         CommonModule,
         SharedModule,
         PagesRoutingModule,
-        ChartsModule,
         FormsModule,
+        ChartsModule,
         PipesModule
     ],
     exports: [
     DashboardComponent,
     ProgressComponent,
-    Grafica1Component,
-    PagesComponent
+    Grafica1Component
     ],
     providers: [],
 })

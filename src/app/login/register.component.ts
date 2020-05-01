@@ -23,8 +23,8 @@ export class RegisterComponent implements OnInit {
 
     return( group: FormGroup ) => {
 
-      let pass1 = group.controls[campo1].value;
-      let pass2 = group.controls[campo2].value;
+      const pass1 = group.controls[campo1].value;
+      const pass2 = group.controls[campo2].value;
 
       if (pass1 === pass2) {
         return null;
@@ -66,18 +66,17 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let usuario = new Usuario(
+    const usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.email,
       this.forma.value.password
     );
 
     this.uS.crearUsuario( usuario )
-           .subscribe( resp => {
-              console.log( resp );
-              this.router.navigate(['/login']);
-           });
-
+           .subscribe( resp => this.router.navigate(['/login']),
+              err => { Swal.fire({ title: 'Error', text: 'El correo ya esta registrado', icon: 'error'
+            });
+          });
   }
 
 }
